@@ -11,6 +11,7 @@ morepugsServices.factory('Reddit', ['$resource',
         });
         
       var ytVideoRegex = /http\:\/\/www\.youtube\.com\/watch\?v=(\w{11})/;
+      var redditTextRegex = /http\:\/\/www\.reddit\.com\/r\/pugs\/comments/;
         
       function getYTThumbnail(url) {
         var videoId = url.match(ytVideoRegex);
@@ -20,7 +21,15 @@ morepugsServices.factory('Reddit', ['$resource',
       }
       
       function getImgurExtension(url) {
-        if(['jpg', 'gif', 'png'].indexOf(url.split('.').pop()) === -1) return url + ".jpg";
+        if(['jpg', 'gif', 'png'].indexOf(url.split('.').pop()) === -1) {
+          return url + ".jpg";
+        }
+        return undefined;
+      }
+      
+      function getRedditTextPost(url) {
+        if(url.match(redditTextRegex))
+          return 'images/reddit.png';
         return undefined;
       }
         
@@ -37,11 +46,11 @@ morepugsServices.factory('Reddit', ['$resource',
               // Check conditions
               var yt = getYTThumbnail(item.data.url);
               var noExt = getImgurExtension(item.data.url);
+              var textPost = getRedditTextPost(item.data.url);
               
               if(yt) thumbnail = yt;
+              else if(textPost) thumbnail = textPost;
               else if(noExt) thumbnail = noExt;
-              
-              // Check mime-type of thumbnail
               
               returned.push({thumbnail:thumbnail, url:item.data.url, category:'reddit'});
             });
