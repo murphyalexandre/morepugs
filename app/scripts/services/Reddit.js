@@ -18,6 +18,11 @@ morepugsServices.factory('Reddit', ['$resource',
           return 'http://img.youtube.com/vi/'+(videoId.pop())+'/0.jpg';
         return undefined;
       }
+      
+      function getImgurExtension(url) {
+        if(['jpg', 'gif', 'png'].indexOf(url.split('.').pop()) === -1) return url + ".jpg";
+        return undefined;
+      }
         
       // Here we wrap the call so we can standarize how the input is sent to the controller
       // for all the services.
@@ -27,8 +32,14 @@ morepugsServices.factory('Reddit', ['$resource',
           source.query().$promise.then(function(result) {
             var returned = [];
             angular.forEach(result.data.children, function(item) {
-              var thumbnail = getYTThumbnail(item.data.url);
-              if(!thumbnail) thumbnail = item.data.url;
+              var thumbnail = item.data.url;
+              
+              // Check conditions
+              var yt = getYTThumbnail(item.data.url);
+              var noExt = getImgurExtension(item.data.url);
+              
+              if(yt) thumbnail = yt;
+              else if(noExt) thumbnail = noExt;
               
               returned.push({thumbnail:thumbnail, url:item.data.url, category:'reddit'});
             });
