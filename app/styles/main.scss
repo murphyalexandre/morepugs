@@ -52,10 +52,13 @@ div.main-content {
     li {
       width: 200px;
       height: 200px;
-      border: thin solid blue;
       float: left;
       margin: 10px;
     }
+  }
+  
+  .filter-btn {
+    margin: 5px;
   }
 }
 

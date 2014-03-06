@@ -8,9 +8,16 @@
 </div>
 
 <div class="col-12-md row main-content">
+  <div class="filters">
+    <button class="filter-btn btn" ng-class="{'btn-success':category.active, 'btn-primary':!category.active}" ng-click="toggleCategory(category)" ng-repeat="category in categories">{{category.name}}</button>
+  </div>
   <ul class="images">
-    <li ng-repeat="item in redditData.children"><a ng-href="{{item.data.url}}"><img ng-src="{{item.data.url}}" width="200" height="200"></a></li>
+    <li ng-repeat="item in filteredData"><a ng-href="{{item.url}}" target='_blank'><img ng-src="{{item.thumbnail}}" width="200" height="200"></a></li>
   </ul>
+</div>
+
+<div class="clearfix">
+  <button class="btn btn-primary" ng-click="more()">More</button>
 </div>
 
 <div class="footer">

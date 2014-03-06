@@ -6,7 +6,9 @@ angular.module('morepugsApp', [
   'ngSanitize',
   'ngRoute',
   
-  'morepugsApp.services',
+  'morepugsApp.reddit',
+  'morepugsApp.tumblr',
+  'morepugsApp.instagram',
 ])
   .config(function ($routeProvider) {
     $routeProvider
