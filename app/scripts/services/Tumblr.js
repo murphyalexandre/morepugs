@@ -5,6 +5,8 @@ var morepugsServices = angular.module('morepugsApp.tumblr', ['ngResource']);
 morepugsServices.factory('Tumblr', ['$resource',
     function ($resource) {
       var apiKey = 'fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4';
+      var treshold = 150;
+      var imageSize = 200;
       var source = $resource('http://api.tumblr.com/v2/tagged?tag=pug&api_key='+apiKey, null,
         {
           'query': { method:'JSONP', params: {callback: 'JSON_CALLBACK'}, isarray:false },
@@ -20,7 +22,7 @@ morepugsServices.factory('Tumblr', ['$resource',
               if(item.photos) {
                 var thumbnail = "";
                 angular.forEach(item.photos[0].alt_sizes, function(altSize) {
-                  if(Math.abs(altSize.width - 200) < 100 && Math.abs(altSize.height - 200) < 100) {
+                  if(Math.abs(altSize.width - imageSize) < treshold && Math.abs(altSize.height - imageSize) < treshold) {
                     thumbnail = altSize.url;
                   }
                 });
@@ -41,7 +43,7 @@ morepugsServices.factory('Tumblr', ['$resource',
               if(item.photos) {
                 var thumbnail = "";
                 angular.forEach(item.photos[0].alt_sizes, function(altSize) {
-                  if(Math.abs(altSize.width - 200) < 100 && Math.abs(altSize.height - 200) < 100) {
+                  if(Math.abs(altSize.width - imageSize) < treshold && Math.abs(altSize.height - imageSize) < treshold) {
                     thumbnail = altSize.url;
                   }
                 });

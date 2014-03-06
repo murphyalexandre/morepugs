@@ -2,8 +2,8 @@
 
 var morepugsServices = angular.module('morepugsApp.reddit', ['ngResource']);
 
-morepugsServices.factory('Reddit', ['$resource',
-    function ($resource) {
+morepugsServices.factory('Reddit', ['$resource', '$http',
+    function ($resource, $http) {
       var source = $resource('http://www.reddit.com/r/pugs/new.json', null,
         {
           'query': { method:'GET', isarray:false },
@@ -21,9 +21,8 @@ morepugsServices.factory('Reddit', ['$resource',
       }
       
       function getImgurExtension(url) {
-        if(['jpg', 'gif', 'png'].indexOf(url.split('.').pop()) === -1) {
+        if(['jpg', 'gif', 'png'].indexOf(url.split('.').pop()) === -1)
           return url + ".jpg";
-        }
         return undefined;
       }
       

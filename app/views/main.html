@@ -12,7 +12,7 @@
     <button class="filter-btn btn" ng-class="{'btn-success':category.active, 'btn-primary':!category.active}" ng-click="toggleCategory(category)" ng-repeat="category in categories">{{category.name}}</button>
   </div>
   <ul class="images">
-    <li ng-repeat="item in filteredData"><a ng-href="{{item.url}}" target='_blank'><img ng-src="{{item.thumbnail}}" width="200" height="200"></a></li>
+    <li ng-repeat="item in filteredData"><a ng-href="{{item.url}}" target='_blank'><img ng-src="{{item.thumbnail}}" err-SRC="images/default-thumb.gif" width="200" height="200"></a></li>
   </ul>
 </div>
 
