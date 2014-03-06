@@ -16,7 +16,17 @@ morepugsServices.factory('Tumblr', ['$resource',
           source.query().$promise.then(function(result) {
             var returned = [];
             angular.forEach(result.response, function(item) {
-              returned.push({thumbnail:item.photos[0].alt_sizes[3].url, url:item.photos[0].alt_sizes[3].url, category:'tumblr'});
+              // Find right size in alt_sizes
+              if(item.photos) {
+                var thumbnail = "";
+                angular.forEach(item.photos[0].alt_sizes, function(altSize) {
+                  if(Math.abs(altSize.width - 200) < 100 && Math.abs(altSize.height - 200) < 100) {
+                    thumbnail = altSize.url;
+                  }
+                });
+                
+                returned.push({thumbnail:thumbnail, url:item.photos[0].original_size.url, category:'tumblr'});
+              }
             });
             
             callback({data:returned, next:result.response[result.response.length-1].timestamp, previous:null});

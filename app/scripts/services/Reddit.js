@@ -41,6 +41,8 @@ morepugsServices.factory('Reddit', ['$resource',
               if(yt) thumbnail = yt;
               else if(noExt) thumbnail = noExt;
               
+              // Check mime-type of thumbnail
+              
               returned.push({thumbnail:thumbnail, url:item.data.url, category:'reddit'});
             });
             
@@ -52,8 +54,14 @@ morepugsServices.factory('Reddit', ['$resource',
           source.query({after:next}).$promise.then(function(result) {
             var returned = [];
             angular.forEach(result.data.children, function(item) {
-              var thumbnail = getYTThumbnail(item.data.url);
-              if(!thumbnail) thumbnail = item.data.url;
+              var thumbnail = item.data.url;
+              
+              // Check conditions
+              var yt = getYTThumbnail(item.data.url);
+              var noExt = getImgurExtension(item.data.url);
+              
+              if(yt) thumbnail = yt;
+              else if(noExt) thumbnail = noExt;
               
               returned.push({thumbnail:thumbnail, url:item.data.url, category:'reddit'});
             });
