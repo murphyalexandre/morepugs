@@ -1,0 +1,22 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li><a ng-href="/">Home</a></li>
+    <li class="active"><a ng-href="#">About</a></li>
+  </ul>
+  <h3 class="text-muted">more<span class="pugs-title-color">pugs</span></h3>
+</div>
+
+<div class="col-12-md row main-content">
+  <p class="pull-right"><img ng-src="http://www.gravatar.com/avatar/{{email | gravatar}}?s=100"/></p>
+  <p>Hi, my name is <a href="http://about.me/murphyalexandre">Alex</a>. I made this website in my spare time mostly for my girlfriend (but also for me, but don't tell her!).</p>
+  <p>Why? Well, I like technology and I wanted to try something new.</p>
+  <p>If you have any comments or suggestions, feel free to send me a message down below. If you are interested in seeing the source code, <a href="https://github.com/murphyalexandre/morepugs">you can see it here and even contribute!</a></p>
+  <form role="form" class="well" action="http://api.formspree.com/murphyalexandre@gmail.com" method="POST">
+    <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required="required" class="form-control" placeholder="John Doe"/></div>
+    <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="_replyto" required="required" class="form-control" placeholder="john@doe.com"/></div>
+    <div class="form-group"><label for="message">Message</label><textarea name="message" required="required" class="form-control"></textarea></div>
+    <div class="form-group"><button class="form-control btn btn-success">Send</button></div>
+  </form>
+</div>
+
+<script src = "http://www.myersdaily.org/joseph/javascript/md5.js"></script>
