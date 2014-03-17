@@ -27,7 +27,7 @@ morepugsServices.factory('Tumblr', ['$resource',
                   }
                 });
                 
-                returned.push({thumbnail:thumbnail, url:item.photos[0].original_size.url, category:'tumblr'});
+                returned.push({thumbnail:thumbnail, url:item.image_permalink, category:'tumblr'});
               }
             });
             
