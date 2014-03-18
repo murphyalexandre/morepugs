@@ -16,7 +16,6 @@ morepugsServices.factory('Instagram', ['$resource',
         query: function getData(callback) {
           source.query().$promise.then(function(result) {
             var returned = [];
-            console.log('Instagram data', result);
             angular.forEach(result.data, function(item) {
               returned.push({thumbnail:item.images.thumbnail.url, url:item.link, category:'instagram'});
             });
