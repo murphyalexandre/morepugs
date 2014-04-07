@@ -5,12 +5,13 @@ angular.module('morepugsApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  
+
   'angular-md5',
-  
+
   'morepugsApp.reddit',
   'morepugsApp.tumblr',
   'morepugsApp.instagram',
+  'morepugsApp.flickr',
 ])
   .config(function ($routeProvider) {
     $routeProvider
